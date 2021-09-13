@@ -2,7 +2,7 @@
   require_once "includes/header.php";
 ?>
 <!-- header -->
-<form class="myform" action="login.php" method="post">
+<form action="includes/signup_inc.php" method="post">
   <div class="container-fluid">
     <h2>Sign Up</h2><br><br>
   </div>
@@ -10,23 +10,23 @@
   <div class="container-fluid">
     <div class="input-group">
       <span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i> </span>
-      <input type="text" id="input" name="name" class="form-control" placeholder="Full Name">
+      <input type="text" id="input" name="name" class="form-control" placeholder="Full Name" required>
     </div><br>
     <div class="input-group">
       <span class="input-group-addon"> <i class="glyphicon glyphicon-envelope"></i> </span>
-      <input type="email" id="input" name="email" class="form-control" placeholder="Email">
+      <input type="email" id="input" name="email" class="form-control" placeholder="Email" required>
     </div><br>
     <div class="input-group">
       <span class="input-group-addon"> <i class="glyphicon glyphicon-lock"></i> </span>
-      <input type="password" id="input" name="password" class="form-control" placeholder="Password">
+      <input type="password" id="input" name="password" class="form-control" placeholder="Password" required>
     </div><br>
     <div class="input-group">
       <span class="input-group-addon"> <i class="glyphicon glyphicon-lock"></i> </span>
-      <input type="password" id="input" name="password2" class="form-control" placeholder="Confirm Password">
+      <input type="password" id="input" name="password2" class="form-control" placeholder="Confirm Password" required>
     </div><br>
     <div class="input-group">
       <span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i> </span>
-      <select id="input" class="form-control" name="gender">
+      <select id="input" class="form-control" name="gender" required>
         <option value="" selected>Select Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
@@ -34,11 +34,11 @@
     </div><br>
     <div class="input-group">
       <span class="input-group-addon"> <i class="glyphicon glyphicon-phone"></i> </span>
-      <input type="text" id="input" name="phone" class="form-control" placeholder="Phone no">
+      <input type="text" id="input" name="phone" class="form-control" placeholder="Phone no" required>
     </div><br>
     <div class="input-group">
       <span class="input-group-addon"> <i class="glyphicon glyphicon-map-marker"></i> </span>
-      <select id="input" class="form-control" name="state">
+      <select id="input" class="form-control" name="state" required>
         <option value="" selected>Select State</option>
         <option value="karnataka">Karnataka</option>
         <option value="tamilnadu">Tamilnadu</option>
@@ -46,7 +46,7 @@
       </select>
     </div><br>
     <div class="input-group">
-      <button type="button" class="btn btn-primary" name="button">SignUp <i class="glyphicon glyphicon-send"></i></button>
+      <button type="submit" class="btn btn-primary" name="submit">SignUp <i class="glyphicon glyphicon-send"></i></button>
     </div><br>
   </div>
 </form>
