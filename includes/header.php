@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,13 +18,22 @@
   <body>
     <div class="navbar navbar-inverse">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.php">OnlineFoodOrder</a>
+        <a class="navbar-brand" >OnlineFoodOrder</a>
       </div>
       <ul class="nav navbar-nav">
-        <li> <a href="#">Inventory</a> </li>
-        <li> <a href="#">Cart</a> </li>
-        <li> <a href="login.php">Login</a> </li>
-        <li> <a href="signup.php">Sign Up</a> </li>
-        <li> <a href="aboutus.php">About Us</a> </li>
+        <?php
+          if (isset($_SESSION["userId"])) {
+            echo "<li> <a href='#'>Inventory</a> </li>";
+            echo "<li> <a href='#'>Cart</a> </li>";
+            echo "<li> <a href='profile.php'>Profile</a> </li>";
+            echo "<li> <a href='includes/logout_inc.php'>Logout</a> </li>";
+            echo "<li> <a href='aboutus.php'>About Us</a> </li>";
+          }
+          else {
+            echo "<li> <a href='login.php'>Login</a> </li>";
+            echo "<li> <a href='signup.php'>Sign Up</a> </li>";
+            echo "<li> <a href='aboutus.php'>About Us</a> </li>";
+          }
+        ?>
       </ul>
     </div>

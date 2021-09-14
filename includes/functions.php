@@ -40,13 +40,35 @@ function createUser($conn,$name,$email,$pass1,$phone,$gender,$state){
   $stmt = mysqli_stmt_init($conn);
 
   if(!mysqli_stmt_prepare($stmt,$sql)){
-    header("location: ../signup.php?error=stmtFailedS");
+    header("location: ../signup.php?error=stmtFailed");
     exit();
   }
   $hashPass = password_hash($pass1,PASSWORD_DEFAULT);
   mysqli_stmt_bind_param($stmt,"ssssss",$name,$email,$hashPass,$phone,$gender,$state);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
-  header("location: ../login.php?error=none");
+  header("location: ../signup.php?error=none");
   exit();
+}
+
+function loginUser($conn,$email,$pass){
+  $userExist = emailExist($conn,$email);
+  if ($userExist === false) {
+    header("location: ../login.php?error=EmailNotExist");
+    exit();
+  }
+  $passHash = $userExist["u_password"];
+  $chkPass = password_verify($pass,$passHash);
+
+  if ($chkPass === false) {
+    header("location: ../login.php?error=WrongPassword");
+    exit();
+  }
+  else if ($chkPass === true) {
+    session_start();
+    $_SESSION["userId"] = $userExist['u_id'];
+    $_SESSION["userName"] = $userExist['u_name'];
+    header("location: ../home.php");
+    exit();
+  }
 }
