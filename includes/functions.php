@@ -72,3 +72,33 @@ function loginUser($conn,$email,$pass){
     exit();
   }
 }
+function addItem($conn,$name,$price,$category){
+  $sql = "INSERT INTO products (p_name,p_price,p_category) VALUES (?,?,?);";
+  $stmt = mysqli_stmt_init($conn);
+
+  if(!mysqli_stmt_prepare($stmt,$sql)){
+    header("location: ../edititem.php?error=stmtFailed");
+    exit();
+  }
+
+  mysqli_stmt_bind_param($stmt,"sss",$name,$price,$category);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_close($stmt);
+  header("location: ../edititem.php?error=added");
+  exit();
+}
+function deleteItem($conn,$name,$category){
+  $sql = "DELETE FROM products WHERE p_name=? and p_category=?;";
+  $stmt = mysqli_stmt_init($conn);
+
+  if(!mysqli_stmt_prepare($stmt,$sql)){
+    header("location: ../edititem.php?error=stmtFailed");
+    exit();
+  }
+
+  mysqli_stmt_bind_param($stmt,"ss",$name,$category);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_close($stmt);
+  header("location: ../edititem.php?error=deleted");
+  exit();
+}

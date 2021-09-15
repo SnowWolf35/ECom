@@ -1,13 +1,25 @@
 <?php
   require_once "includes/header.php"
 ?>
+<form class="addItem" action="edititem.php" method="post">
+  <?php
+    if (isset($_SESSION["userId"])) {
+      if ($_SESSION["userName"] === "SYS_ADMIN") {
+        echo "<div class='usr'>
+          &nbsp &nbsp <button type='submit' class='btn btn-primary' name='add'>Add Item</button>
+          &nbsp &nbsp <button type='submit' class='btn btn-danger' name='delete'>Delete Item</button>
+        </div>";
+      }
+    }
+  ?>
+</form>
 
+<div class="title">
+  <hr>
+  <h2 class="text-center">Products</h2>
+  <hr>
+</div>
 <div class="container">
-  <div class="title">
-    <hr>
-    <h2 class="text-center">Products</h2>
-    <hr>
-  </div>
   <div class="row">
     <div class="col-sm-4 col-sm-6 center-responsive">
       <div class="product">
