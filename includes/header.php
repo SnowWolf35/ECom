@@ -18,16 +18,30 @@
   <body>
     <div class="navbar navbar-inverse">
       <div class="navbar-header">
-        <a class="navbar-brand" >OnlineFoodOrder</a>
+        <?php
+          if (isset($_SESSION['userId'])) {
+            echo "<a class='navbar-brand' href='home.php'>OnlineFoodOrder</a>";
+          }
+          else {
+            echo "<a class='navbar-brand' href='index.php'>OnlineFoodOrder</a>";
+          }
+        ?>
       </div>
       <ul class="nav navbar-nav">
         <?php
           if (isset($_SESSION["userId"])) {
-            echo "<li> <a href='#'>Inventory</a> </li>";
-            echo "<li> <a href='#'>Cart</a> </li>";
-            echo "<li> <a href='profile.php'>Profile</a> </li>";
-            echo "<li> <a href='includes/logout_inc.php'>Logout</a> </li>";
-            echo "<li> <a href='aboutus.php'>About Us</a> </li>";
+            if ($_SESSION["userName"] === "SYS_ADMIN") {
+              echo "<li> <a href='products.php'>Inventory</a> </li>";
+              echo "<li> <a href='purchase.php'>Purchases</a> </li>";
+              echo "<li> <a href='includes/logout_inc.php'>Logout</a> </li>";
+              echo "<li> <a href='aboutus.php'>About Us</a> </li>";
+            }
+            else {
+              echo "<li> <a href='products.php'>Inventory</a> </li>";
+              echo "<li> <a href='cart.php'>Cart</a> </li>";
+              echo "<li> <a href='includes/logout_inc.php'>Logout</a> </li>";
+              echo "<li> <a href='aboutus.php'>About Us</a> </li>";
+            }
           }
           else {
             echo "<li> <a href='login.php'>Login</a> </li>";
